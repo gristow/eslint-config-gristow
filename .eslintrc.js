@@ -30,6 +30,7 @@ module.exports = {
       ],
       "rules": {
         "@typescript-eslint/no-var-requires": "warn",
+        "@typescript-eslint/no-use-before-define": ["error", {functions: false}],
         "import/no-unresolved": 0,
         ...rules
       }
