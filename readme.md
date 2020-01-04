@@ -1,4 +1,4 @@
-###eslint-config-gristow
+### eslint-config-gristow
 
 A basic eslint configuration (loosely based off of eslint-config-wesbos) and extending AirBNB that also wraps in support for *.ts files.
 
