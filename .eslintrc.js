@@ -47,7 +47,7 @@ module.exports = {
         "no-dupe-class-members": "off",
         "@typescript-eslint/no-useless-constructor": "error",
         "valid-jsdoc": "off",
-        "tsdoc/syntax": "error",
+        "tsdoc/syntax": "warn",
         ...rules
       },
       settings: {
