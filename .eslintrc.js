@@ -4,7 +4,7 @@ module.exports = {
   "extends": [
     "airbnb",
     "prettier",
-    "prettier/react"
+    "prettier/react",
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -18,8 +18,17 @@ module.exports = {
   "plugins": ["prettier"],
   "overrides": [
     {
+      files: ["*.js"],
+      "extends": [
+        "airbnb",
+        "prettier",
+        "prettier/react",
+        "plugin:jsdoc/recommended",
+      ]
+    },
+    {
       "files": ["*.ts"],
-      "plugins": ["prettier"],
+      "plugins": ["prettier", "eslint-plugin-tsdoc"],
       "parser": "@typescript-eslint/parser",
       "extends": [
         "plugin:@typescript-eslint/recommended",
@@ -32,9 +41,48 @@ module.exports = {
         "@typescript-eslint/no-var-requires": "warn",
         "@typescript-eslint/no-use-before-define": ["error", {functions: false}],
         "import/no-unresolved": 0,
+        "no-useless-constructor": "off",
+        // no-dupe-class-members should be removed when this PR lands:
+        // https://github.com/typescript-eslint/typescript-eslint/pull/1492
+        "no-dupe-class-members": "off",
+        "@typescript-eslint/no-useless-constructor": "error",
+        "valid-jsdoc": "off",
+        "tsdoc/syntax": "error",
         ...rules
+      },
+      settings: {
+        jsdoc: {
+          mode: 'typescript'
+        }
       }
     }
   ],
-  rules,
+  rules: {
+    'require-jsdoc': [
+      'warn',
+      {
+        require: {
+          FunctionDeclaration: false,
+          MethodDefinition: true,
+          ClassDeclaration: true,
+        },
+      },
+    ],
+    'valid-jsdoc': [
+      'warn',
+      {
+        requireReturn: false,
+        preferType: {
+          Boolean: 'boolean',
+          Number: 'number',
+          object: 'Object',
+          String: 'string',
+          function: 'Function',
+        },
+        requireParamDescription: false,
+        requireReturnDescription: false,
+      },
+    ],
+    ...rules
+  },
 }

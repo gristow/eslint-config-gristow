@@ -62,29 +62,4 @@ module.exports = {
   'no-mixed-operators': 'off',
   'no-use-before-define': ['error', { functions: false }],
   'no-lonely-if': 'warn',
-  'require-jsdoc': [
-    'warn',
-    {
-      require: {
-        FunctionDeclaration: false,
-        MethodDefinition: true,
-        ClassDeclaration: true,
-      },
-    },
-  ],
-  'valid-jsdoc': [
-    'warn',
-    {
-      requireReturn: false,
-      preferType: {
-        Boolean: 'boolean',
-        Number: 'number',
-        object: 'Object',
-        String: 'string',
-        function: 'Function',
-      },
-      requireParamDescription: false,
-      requireReturnDescription: false,
-    },
-  ],
 };
