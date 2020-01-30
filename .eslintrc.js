@@ -54,6 +54,8 @@ module.exports = {
         "prettier/react",
       ],
       "rules": {
+        "react/static-property-placement": "off",
+        "@typescript-eslint/indent": "off",
         "import/no-cycle": "off", // otherwise captures cycles by type inclusion
         "@typescript-eslint/no-var-requires": "warn",
         "@typescript-eslint/no-use-before-define": ["error", {functions: false}],
