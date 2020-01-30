@@ -1,11 +1,8 @@
+// See https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/ROADMAP.md for tslint-eslint rule migration
+
 const rules = require('./shared-rules');
 
 module.exports = {
-  "extends": [
-    "airbnb",
-    "prettier",
-    "prettier/react",
-  ],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -18,24 +15,29 @@ module.exports = {
   "plugins": ["prettier"],
   "overrides": [
     {
-      files: ["*.js"],
+      files: ["*.js", "*.jsx"],
       "extends": [
-        "airbnb",
         "prettier",
         "prettier/react",
         "plugin:jsdoc/recommended",
-      ]
+        // "airbnb",
+        "airbnb-typescript",
+      ],
+      rules: {
+        ...rules,
+      },
     },
     {
       "files": ["*.ts"],
       "plugins": ["prettier", "eslint-plugin-tsdoc"],
       "parser": "@typescript-eslint/parser",
       "extends": [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:import/typescript",
-        "airbnb",
         "prettier",
         "prettier/react",
+        // "plugin:@typescript-eslint/recommended",
+        // "plugin:import/typescript",
+        // "airbnb",
+        "airbnb-typescript",
       ],
       "rules": {
         "@typescript-eslint/no-var-requires": "warn",
@@ -45,10 +47,12 @@ module.exports = {
         // no-dupe-class-members should be removed when this PR lands:
         // https://github.com/typescript-eslint/typescript-eslint/pull/1492
         "no-dupe-class-members": "off",
+        // So we can allow overloading, and list of class props defined
+        "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
         "@typescript-eslint/no-useless-constructor": "error",
         "valid-jsdoc": "off",
         "tsdoc/syntax": "warn",
-        ...rules
+        ...rules,
       },
       settings: {
         jsdoc: {
@@ -57,32 +61,5 @@ module.exports = {
       }
     }
   ],
-  rules: {
-    'require-jsdoc': [
-      'warn',
-      {
-        require: {
-          FunctionDeclaration: false,
-          MethodDefinition: true,
-          ClassDeclaration: true,
-        },
-      },
-    ],
-    'valid-jsdoc': [
-      'warn',
-      {
-        requireReturn: false,
-        preferType: {
-          Boolean: 'boolean',
-          Number: 'number',
-          object: 'Object',
-          String: 'string',
-          function: 'Function',
-        },
-        requireParamDescription: false,
-        requireReturnDescription: false,
-      },
-    ],
-    ...rules
-  },
+
 }
