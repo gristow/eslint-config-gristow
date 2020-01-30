@@ -2,6 +2,8 @@
  * These rules are shared by both .js and .ts
  */
 module.exports = {
+  'no-use-before-define': ['error', { functions: false }],
+  '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
   'prettier/prettier': [
     'error',
     {
@@ -57,6 +59,5 @@ module.exports = {
   'prefer-rest-params': 'warn',
   'default-case': 'off',
   'no-mixed-operators': 'off',
-  'no-use-before-define': ['error'],
   'no-lonely-if': 'warn',
 };

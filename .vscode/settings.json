@@ -7,7 +7,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/.git/logs": true,
-    // "**/node_modules": true,
+    "**/node_modules": true,
     "**/build": true
   },
   "editor.codeActionsOnSave": {
