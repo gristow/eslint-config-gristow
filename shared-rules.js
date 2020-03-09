@@ -60,4 +60,5 @@ module.exports = {
   'default-case': 'off',
   'no-mixed-operators': 'off',
   'no-lonely-if': 'warn',
+  'guard-for-in': 'warn',
 };
