@@ -15,7 +15,7 @@ module.exports = {
   "plugins": ["prettier"],
   "overrides": [
     {
-      files: ["*.js", "*.jsx"],
+      files: ["*.js", "*.jsx", "*.svelte"],
       "plugins": ["prettier", "jsdoc"],
       "extends": [
         "airbnb-typescript",
@@ -45,7 +45,7 @@ module.exports = {
       },
     },
     {
-      "files": ["*.ts"],
+      "files": ["*.ts", "*.svelte"],
       "plugins": ["prettier", "eslint-plugin-tsdoc"],
       "parser": "@typescript-eslint/parser",
       "extends": [

@@ -13,6 +13,7 @@ module.exports = {
       tabWidth: 2,
     },
   ],
+  'no-duplicate-imports': 'error',
   'no-debugger': 0,
   'no-restricted-syntax': [2, 'LabeledStatement', 'WithStatement'],
   'prefer-const': [

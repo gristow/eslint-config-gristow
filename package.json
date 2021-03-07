@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-gristow",
-  "version": "1.0.12",
+  "version": "1.0.17",
   "description": "Eslint settings for Greg Ristow",
   "main": "index.js",
   "scripts": {
@@ -26,8 +26,7 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.3.0",
     "eslint-plugin-tsdoc": "^0.2.1",
-    "prettier": "^1.16.4",
-    "typescript": "^3.5.1"
+    "prettier": "^1.16.4"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.14.0",
@@ -47,9 +46,10 @@
     "eslint-plugin-react-hooks": "^1.3.0",
     "eslint-plugin-tsdoc": "^0.2.1",
     "prettier": "^1.16.4",
-    "typescript": "^3.5.1"
+    "typescript": "*"
   },
   "devDependencies": {
-    "eslint-plugin-tsdoc": "^0.2.1"
+    "eslint-plugin-tsdoc": "^0.2.1",
+    "typescript": ">=3.5.0"
   }
 }
