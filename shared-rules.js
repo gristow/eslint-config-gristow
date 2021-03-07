@@ -4,15 +4,6 @@
 module.exports = {
   'no-use-before-define': ['error', { functions: false }],
   '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
-  'prettier/prettier': [
-    'error',
-    {
-      trailingComma: 'es5',
-      singleQuote: true,
-      printWidth: 100,
-      tabWidth: 2,
-    },
-  ],
   'no-duplicate-imports': 'error',
   'no-debugger': 0,
   'no-restricted-syntax': [2, 'LabeledStatement', 'WithStatement'],
