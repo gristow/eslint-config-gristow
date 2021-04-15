@@ -65,6 +65,8 @@ module.exports = {
       plugins: ['prettier', 'jsdoc'],
       extends: ['airbnb', 'prettier'],
       rules: {
+        ...rules,
+        ...prettierRules,
         '@typescript-eslint/indent': 'off',
         'jsdoc/check-alignment': 1, // Recommended
         'jsdoc/check-param-names': 1, // Recommended
@@ -83,8 +85,6 @@ module.exports = {
         'jsdoc/require-returns-description': 'warn', // Recommended
         'jsdoc/require-returns-type': 1, // Recommended
         'jsdoc/valid-types': 1, // Recommended
-        ...rules,
-        ...prettierRules,
         'import/no-cycle': 'off',
       },
     },
@@ -94,12 +94,15 @@ module.exports = {
       parser: '@typescript-eslint/parser',
       extends: ['airbnb-typescript', 'prettier'],
       rules: {
+        ...rules,
+        ...prettierRules,
         'react/static-property-placement': 'off',
         '@typescript-eslint/indent': 'off',
         'import/no-cycle': 'off', // otherwise captures cycles by type inclusion
         '@typescript-eslint/no-var-requires': 'warn',
         '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
         'import/no-unresolved': 0,
+        'no-use-before-define': 'off',
         'no-useless-constructor': 'off',
         // no-dupe-class-members should be removed when this PR lands:
         // https://github.com/typescript-eslint/typescript-eslint/pull/1492
@@ -109,8 +112,6 @@ module.exports = {
         '@typescript-eslint/no-useless-constructor': 'error',
         'tsdoc/syntax': 'warn',
         'no-shadow': 'off',
-        ...rules,
-        ...prettierRules,
       },
       settings: {
         jsdoc: {
