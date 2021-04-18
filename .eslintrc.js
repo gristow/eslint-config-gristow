@@ -55,6 +55,9 @@ module.exports = {
         'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
         '@typescript-eslint/no-useless-constructor': 'error',
         'tsdoc/syntax': 'warn',
+        // We get these via TS checking, and w/ import type we might have 2 entries,
+        // one for named, one for default, one for actual import.
+        'no-duplicate-imports': 'off',
       },
       settings: {
         'svelte3/typescript': require('typescript'),
@@ -86,6 +89,10 @@ module.exports = {
         'jsdoc/require-returns-type': 1, // Recommended
         'jsdoc/valid-types': 1, // Recommended
         'import/no-cycle': 'off',
+        // We get these via TS checking, and w/ import type we might have 2 entries,
+        // one for named, one for default, one for actual import.
+        'import/no-duplicates': 'off',
+        'no-duplicate-imports': 'off',
       },
     },
     {
