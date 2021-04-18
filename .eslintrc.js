@@ -89,10 +89,6 @@ module.exports = {
         'jsdoc/require-returns-type': 1, // Recommended
         'jsdoc/valid-types': 1, // Recommended
         'import/no-cycle': 'off',
-        // We get these via TS checking, and w/ import type we might have 2 entries,
-        // one for named, one for default, one for actual import.
-        'import/no-duplicates': 'off',
-        'no-duplicate-imports': 'off',
       },
     },
     {
@@ -119,6 +115,10 @@ module.exports = {
         '@typescript-eslint/no-useless-constructor': 'error',
         'tsdoc/syntax': 'warn',
         'no-shadow': 'off',
+        // We get these via TS checking, and w/ import type we might have 2 entries,
+        // one for named, one for default, one for actual import.
+        'import/no-duplicates': 'off',
+        'no-duplicate-imports': 'off',
       },
       settings: {
         jsdoc: {
