@@ -16,7 +16,7 @@ module.exports = {
   overrides: [
     {
       files: ['*.svelte'],
-      plugins: ['svelte3', '@typescript-eslint', 'jsdoc'],
+      plugins: ['svelte3', '@typescript-eslint', 'eslint-plugin-tsdoc'],
       processor: 'svelte3/svelte3',
       extends: ['airbnb-typescript'],
       rules: {
@@ -27,23 +27,6 @@ module.exports = {
         'import/no-mutable-exports': 'off',
         'import/no-unresolved': 'off',
         '@typescript-eslint/indent': 'off',
-        'jsdoc/check-alignment': 1, // Recommended
-        'jsdoc/check-param-names': 1, // Recommended
-        'jsdoc/check-tag-names': 1, // Recommended
-        'jsdoc/check-types': 1, // Recommended
-        'jsdoc/implements-on-classes': 1, // Recommended
-        'jsdoc/newline-after-description': 1, // Recommended
-        'jsdoc/no-undefined-types': 1, // Recommended
-        'jsdoc/require-description': 'warn',
-        'jsdoc/require-param': 1, // Recommended
-        'jsdoc/require-param-description': 'warn', // Recommended
-        'jsdoc/require-param-name': 1, // Recommended
-        'jsdoc/require-param-type': 1, // Recommended
-        'jsdoc/require-returns': 'warn', // Recommended
-        'jsdoc/require-returns-check': 1, // Recommended
-        'jsdoc/require-returns-description': 'warn', // Recommended
-        'jsdoc/require-returns-type': 1, // Recommended
-        'jsdoc/valid-types': 1, // Recommended
         'react/static-property-placement': 'off',
         '@typescript-eslint/no-var-requires': 'warn',
         '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
