@@ -21,11 +21,19 @@ module.exports = {
       extends: ['airbnb-typescript'],
       rules: {
         ...rules,
+        /**
+         * eslint-plugin-svelte3 has issues, basically, with any eslint fix that creates a
+         * multi-line fix. So, lots has to be disabled... even so, I'm sure I've missed some
+         * see https://github.com/sveltejs/eslint-plugin-svelte3/blob/master/OTHER_PLUGINS.md
+         */
         'import/first': 'off',
         'import/no-cycle': 'off',
         'import/no-duplicates': 'off',
         'import/no-mutable-exports': 'off',
         'import/no-unresolved': 'off',
+        'import/no-useless-path-segments': 'off',
+        // Prettier will add an empty line before end of </script> so this has to be off.
+        'no-multiple-empty-lines': 'off',
         '@typescript-eslint/indent': 'off',
         'react/static-property-placement': 'off',
         '@typescript-eslint/no-var-requires': 'warn',
