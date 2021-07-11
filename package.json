@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-gristow",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "Eslint settings for Greg Ristow",
   "main": "index.js",
   "scripts": {
@@ -60,6 +60,8 @@
     "eslint-plugin-jsdoc": "^35.4.3",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-svelte3": "^3.2.0",
     "eslint-plugin-tsdoc": "^0.2.14",
     "prettier": "^2.3.2",
