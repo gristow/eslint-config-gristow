@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "allowJs": true,
+    "sourceMap": true,
+    "target": "ESNext",
+    "noUnusedLocals": true,
+    "declaration": false,
+    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+  },
+
+  "exclude": [
+    "node_modules",
+  ]
+}

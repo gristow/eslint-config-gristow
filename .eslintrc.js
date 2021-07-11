@@ -4,14 +4,16 @@ const rules = require('./shared-rules');
 const prettierRules = require('./prettier-rules');
 
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 2018,
+    project: ['./tsconfig.json'],
     // Can I remove these now?
     ecmaFeatures: {
       impliedStrict: true,
       classes: true,
     },
+    requireConfigFile: false,
   },
   overrides: [
     {
@@ -35,7 +37,6 @@ module.exports = {
         // Prettier will add an empty line before end of </script> so this has to be off.
         'no-multiple-empty-lines': 'off',
         '@typescript-eslint/indent': 'off',
-        'react/static-property-placement': 'off',
         '@typescript-eslint/no-var-requires': 'warn',
         '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
         'no-useless-constructor': 'off',
@@ -90,7 +91,6 @@ module.exports = {
       rules: {
         ...rules,
         ...prettierRules,
-        'react/static-property-placement': 'off',
         '@typescript-eslint/indent': 'off',
         'import/no-cycle': 'off', // otherwise captures cycles by type inclusion
         '@typescript-eslint/no-var-requires': 'warn',
