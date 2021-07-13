@@ -20,7 +20,7 @@ module.exports = {
       files: ['*.svelte'],
       plugins: ['svelte3', '@typescript-eslint', 'eslint-plugin-tsdoc'],
       processor: 'svelte3/svelte3',
-      extends: ['airbnb-typescript'],
+      extends: ['airbnb-typescript/base'],
       rules: {
         ...rules,
         /**
@@ -58,7 +58,7 @@ module.exports = {
     {
       files: ['*.js', '*.jsx'],
       plugins: ['prettier', 'jsdoc'],
-      extends: ['airbnb', 'prettier'],
+      extends: ['airbnb/base', 'prettier'],
       rules: {
         ...rules,
         ...prettierRules,
@@ -87,7 +87,7 @@ module.exports = {
       files: ['*.ts'],
       plugins: ['prettier', 'eslint-plugin-tsdoc'],
       parser: '@typescript-eslint/parser',
-      extends: ['airbnb-typescript', 'prettier'],
+      extends: ['airbnb-typescript/base', 'prettier'],
       rules: {
         ...rules,
         ...prettierRules,

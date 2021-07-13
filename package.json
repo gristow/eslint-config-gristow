@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-gristow",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "Eslint settings for Greg Ristow",
   "main": "index.js",
   "scripts": {
