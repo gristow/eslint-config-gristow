@@ -8,6 +8,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     project: ['./tsconfig.json'],
+    allowAutomaticSingleRunInference: true,
     // Can I remove these now?
     ecmaFeatures: {
       impliedStrict: true,
@@ -56,7 +57,7 @@ module.exports = {
       },
     },
     {
-      files: ['*.js', '*.jsx'],
+      files: ['*.js'],
       plugins: ['prettier', 'jsdoc'],
       extends: ['airbnb/base', 'prettier'],
       rules: {
