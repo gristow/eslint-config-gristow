@@ -16,6 +16,11 @@ export function completeName(firstName, lastName?) {
   return `${firstName}${lastName ? ` ${lastName}` : ''}`;
 }
 
+// Should NOT complain we haven't used an arrow callback:
+setTimeout(function isNotAnArrowFunction() {
+  console.log('timeout');
+}, 500);
+
 function addOne(n) {
   return n + 1;
 }

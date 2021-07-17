@@ -7,6 +7,7 @@ module.exports = {
   'no-duplicate-imports': 'error',
   'no-debugger': 0,
   'no-restricted-syntax': [2, 'LabeledStatement', 'WithStatement'],
+  'prefer-arrow-callback': 'off',
   'prefer-const': [
     'error',
     {
