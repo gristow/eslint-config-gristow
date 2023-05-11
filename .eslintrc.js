@@ -16,7 +16,6 @@ module.exports = {
     },
     requireConfigFile: false,
   },
-  extends: ['plugin:svelte/recommended'],
   overrides: [
     {
       files: ['*.js'],
