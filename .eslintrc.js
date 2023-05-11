@@ -6,7 +6,7 @@ const prettierRules = require('./prettier-rules');
 module.exports = {
   parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2022,
     project: ['./tsconfig.json'],
     allowAutomaticSingleRunInference: true,
     // Can I remove these now?
@@ -16,11 +16,11 @@ module.exports = {
     },
     requireConfigFile: false,
   },
+  extends: ['plugin:svelte/recommended'],
   overrides: [
     {
       files: ['*.svelte'],
-      plugins: ['svelte3', '@typescript-eslint', 'eslint-plugin-tsdoc'],
-      processor: 'svelte3/svelte3',
+      plugins: ['@typescript-eslint', 'eslint-plugin-tsdoc'],
       extends: ['airbnb-typescript/base'],
       rules: {
         ...rules,
@@ -37,6 +37,8 @@ module.exports = {
         'import/no-useless-path-segments': 'off',
         // Prettier will add an empty line before end of </script> so this has to be off.
         'no-multiple-empty-lines': 'off',
+        // Prettier will sometimes add a new line after =, so disable this:
+        'operator-linebreak': 'off',
         '@typescript-eslint/indent': 'off',
         '@typescript-eslint/no-var-requires': 'warn',
         '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
@@ -51,9 +53,6 @@ module.exports = {
         // We get these via TS checking, and w/ import type we might have 2 entries,
         // one for named, one for default, one for actual import.
         'no-duplicate-imports': 'off',
-      },
-      settings: {
-        'svelte3/typescript': require('typescript'),
       },
     },
     {
@@ -116,6 +115,7 @@ module.exports = {
         jsdoc: {
           mode: 'typescript',
         },
+        'svelte/ignore-styles': () => true,
       },
     },
   ],
