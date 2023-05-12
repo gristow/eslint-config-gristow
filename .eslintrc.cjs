@@ -1,40 +1,36 @@
-const sharedRules = require('./shared-rules.cjs');
+const rules = require('./rules/shared-rules.cjs');
+const importRules = require('./rules/import-rules.js');
 
 module.exports = {
   root: true,
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb/base',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'import'],
   // plugins: ['@typescript-eslint'],
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2020,
-    extraFileExtensions: ['.svelte'],
   },
   settings: {
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+      '@typescript-eslint/parser': ['.ts'],
     },
     'import/resolver': {
       typescript: true,
     },
   },
   rules: {
-    'no-throw-literal': 'error',
-    ...sharedRules,
+    ...rules,
+    ...importRules
   },
   env: {
     browser: true,
     es2017: true,
     node: true,
   },
-  overrides: [
-    {
-      files: ['*.svelte'],
-      parser: 'svelte-eslint-parser',
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-      },
-    },
-  ],
 };

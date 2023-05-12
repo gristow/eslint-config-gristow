@@ -5,10 +5,10 @@ module.exports = {
   'no-unused-vars': 'error',
   'no-unreachable': 'error',
   'no-use-before-define': ['error', { functions: false }],
-  '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
+  // '@-define': ['error', { functions: false }],
   'no-duplicate-imports': 'error',
-  'no-debugger': 0,
-  'no-restricted-syntax': [2, 'LabeledStatement', 'WithStatement'],
+  'no-debugger': 'off',
+  'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
   'prefer-arrow-callback': 'off',
   'prefer-const': [
     'error',
@@ -16,17 +16,16 @@ module.exports = {
       destructuring: 'all',
     },
   ],
-  'arrow-body-style': [2, 'as-needed'],
-  'import/extensions': 0,
+  'arrow-body-style': ['error', 'as-needed'],
   'no-shadow': [
-    2,
+    'error',
     {
       hoist: 'all',
       allow: ['resolve', 'reject', 'done', 'next', 'err', 'error'],
     },
   ],
   quotes: [
-    2,
+    'error',
     'single',
     {
       avoidEscape: true,
@@ -34,25 +33,14 @@ module.exports = {
     },
   ],
   'func-names': ['error', 'as-needed'],
-  'prefer-destructuring': 0,
-  'prefer-promise-reject-errors': 0,
+  'prefer-destructuring': 'off',
+  'prefer-promise-reject-errors': 'off',
   'wrap-iife': 'off',
   'no-else-return': 'warn',
-  // 'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   '@typescript-eslint/consistent-type-imports': [
     'error',
     { prefer: 'type-imports', fixStyle: 'separate-type-imports' },
   ],
-  'import/no-deprecated': 'error',
-  'import/export': 'error',
-  'import/no-empty-named-blocks': 'error',
-  'import/order': [
-    'warn',
-    {
-      groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
-    },
-  ],
-  'import/newline-after-import': 'warn',
   'prefer-template': 'warn',
   'no-plusplus': 'off',
   'no-confusing-arrow': 'off',
@@ -69,4 +57,12 @@ module.exports = {
   'no-mixed-operators': 'off',
   'no-lonely-if': 'warn',
   'guard-for-in': 'warn',
+  '@typescript-eslint/no-var-requires': 'warn',
+  'no-dupe-class-members': 'off',
+  // So we can allow overloading, and list of class props defined
+  'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+  'no-redeclare': 'off',
+  '@typescript-eslint/no-redeclare': 'error',
+  // Enabled by airbnb -- but we use literal throws extensively, and intentionally, in /backend
+  'no-throw-literal': 'off',
 };
