@@ -69,4 +69,7 @@ module.exports = {
   'no-useless-constructor': 'off',
   '@typescript-eslint/no-useless-constructor': 'error',
   'tsdoc/syntax': 'off',
+  // Conflicts w/ prettier:
+  'object-curly-newline': 'off',
+  'operator-linebreak': 'off',
 };
