@@ -72,4 +72,6 @@ module.exports = {
   // Conflicts w/ prettier:
   'object-curly-newline': 'off',
   'operator-linebreak': 'off',
+  'implicit-arrow-linebreak': 'off',
+  'function-paren-newline': 'off',
 };
