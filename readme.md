@@ -62,7 +62,9 @@ Once you have the above installed, you probably want your editor to lint and fix
 1. Install the [ESLint package](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 2. Now we need to setup some VS Code settings via `Code/File` → `Preferences` → `Settings`. It's easier to enter these settings while editing the `settings.json` file, so click the `{}` icon in the top right corner:
-  ```js
+
+```json
+{  
   "[javascript]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
@@ -74,23 +76,16 @@ Once you have the above installed, you probably want your editor to lint and fix
     }
   },  
   "[svelte]": {
+		"editor.defaultFormatter": "svelte.svelte-vscode",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
     }    
   },
-  // Optional BUT IMPORTANT: If you have the prettier extension enabled for other languages like CSS and HTML, turn it off for JS since we are doing it through Eslint already
-  "prettier.disableLanguages": ["javascript", "javascriptreact", "typescript"],
-  ```
-
-3. If you have svelte files you are linting, we have to tell the VS Code eslint extension to parse those in `settings.json`:
-
-```json
-{
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-    "svelte"
-  ]
+  // This line is CRITICAL for enabling eslint checking of svelte files,
+  // otherwise they are ignored by default (despite the above!)
+  "eslint.validate": ["javascript", "typescript", "svelte"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }
 ```

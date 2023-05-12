@@ -2,7 +2,15 @@
  * These rules are shared by both .js and .ts
  */
 module.exports = {
-  'no-unused-vars': 'error',
+  // We disable eslint's no-unused vars, and enable typescript's because
+  // otherwise local vars listed in function overloads are flagged.
+  'no-unused-vars': 'off',
+  '@typescript-eslint/no-unused-vars': 'error',
+
+  // We disable eslint's no-unused vars, and enable typescript's because
+  'default-param-last': 'off',
+  '@typescript-eslint/default-param-last': 'error',
+
   'no-unreachable': 'error',
   'no-use-before-define': ['error', { functions: false }],
   // '@-define': ['error', { functions: false }],
