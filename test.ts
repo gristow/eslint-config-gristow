@@ -1,5 +1,5 @@
 import { greetJS } from './test-js-export';
-import { greet } from './test-ts-export';
+import { greet, snake_case_import } from './test-ts-export';
 
 greetJS('Johnny', 'Appleseed');
 greet('Jenny', 'Applesseed');
@@ -25,4 +25,23 @@ function addOne(n) {
   return n + 1;
 }
 
+// error because not PascalCase
+export class myClassName {}
+
+const SNAKE_CASE_VARIABLE = 'snake case variable';
+console.log(SNAKE_CASE_VARIABLE);
+
+const this_is_a_problem = 'snake case variable';
+console.log(this_is_a_problem);
+
+console.log(snake_case_import);
+
+const coordinates = {
+  x_top: 0,
+};
+
+const { x_top } = coordinates;
+
 throw 'hello';
+
+console.log('unreachable code error!');
