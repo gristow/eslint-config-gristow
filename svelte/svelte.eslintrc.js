@@ -1,13 +1,13 @@
 // See https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/ROADMAP.md for tslint-eslint rule migration
 
-const rules = require('./shared-rules');
-const prettierRules = require('./prettier-rules');
+const rules = require('../shared-rules.cjs');
 
 module.exports = {
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2022,
     project: ['./tsconfig.json'],
+    extraFileExtensions: ['.svelte'],
     allowAutomaticSingleRunInference: true,
     // Can I remove these now?
     ecmaFeatures: {
@@ -16,14 +16,16 @@ module.exports = {
     },
     requireConfigFile: false,
   },
-  extends: ['plugin:svelte/recommended', './.eslintrc.js'],
+  extends: ['gristow'],
   overrides: [
     {
       files: ['*.svelte'],
-      plugins: ['@typescript-eslint', 'eslint-plugin-tsdoc'],
-      extends: ['airbnb-typescript/base'],
+      parser: 'svelte-eslint-parser',
+      plugins: ['@typescript-eslint', 'eslint-plugin-tsdoc', 'eslint-plugin-svelte'],
+      extends: ['airbnb-typescript/base', 'gristow', 'plugin:svelte/recommended'],
       rules: {
         ...rules,
+        '@typescript-eslint/no-throw-literal': 'error',
         /**
          * eslint-plugin-svelte3 has issues, basically, with any eslint fix that creates a
          * multi-line fix. So, lots has to be disabled... even so, I'm sure I've missed some

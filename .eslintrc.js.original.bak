@@ -4,7 +4,7 @@ const rules = require('./shared-rules');
 const prettierRules = require('./prettier-rules');
 
 module.exports = {
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2022,
     project: ['./tsconfig.json'],
@@ -16,13 +16,13 @@ module.exports = {
     },
     requireConfigFile: false,
   },
+  rules,
   overrides: [
     {
       files: ['*.js'],
       plugins: ['prettier', 'jsdoc'],
       extends: ['airbnb/base', 'prettier'],
       rules: {
-        ...rules,
         ...prettierRules,
         '@typescript-eslint/indent': 'off',
         'jsdoc/check-alignment': 1, // Recommended
@@ -51,7 +51,6 @@ module.exports = {
       parser: '@typescript-eslint/parser',
       extends: ['airbnb-typescript/base', 'prettier'],
       rules: {
-        ...rules,
         ...prettierRules,
         '@typescript-eslint/indent': 'off',
         'import/no-cycle': 'off', // otherwise captures cycles by type inclusion

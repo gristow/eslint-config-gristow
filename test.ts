@@ -24,3 +24,5 @@ setTimeout(function isNotAnArrowFunction() {
 function addOne(n) {
   return n + 1;
 }
+
+throw 'hello';
