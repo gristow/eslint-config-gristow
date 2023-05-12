@@ -82,4 +82,10 @@ module.exports = {
   'operator-linebreak': 'off',
   'implicit-arrow-linebreak': 'off',
   'function-paren-newline': 'off',
+  // Snake case often comes in via external libraries
+  camelcase: ['error', {
+    properties: 'always',
+    ignoreDestructuring: true,
+    ignoreImports: true,
+  }]
 };
