@@ -141,10 +141,11 @@ module.exports = {
     // often require these.
     {
       selector: 'objectLiteralProperty',
-      custom: {
-        regex: '[a-zA-Z]+(_[a-zA-Z\\d]+)*',
+      filter: {
+        regex: '^[a-zA-Z]+(_[a-zA-Z\\d]+)*$',
+        match: true,
       },
-      format: ['camelCase', 'strictCamelCase', 'PascalCase', 'snake_case', 'UPPER_CASE'],
+      format: null,
     },
     // Make sure types and interfaces are in PascalCase. (Also applies
     // to classes.)

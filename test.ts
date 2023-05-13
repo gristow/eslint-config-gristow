@@ -4,6 +4,13 @@ import { greet, snake_case_import } from './test-ts-export';
 greetJS('Johnny', 'Appleseed');
 greet('Jenny', 'Applesseed');
 
+const a = {
+  this_pRop_is_ok: 3,
+  _this_prop_is_not: 4,
+  neither__is_this_one: 5,
+};
+console.log(a);
+
 export function completeName(fullName);
 export function completeName(firstName, lastName?) {
   // Should show error, unused variable...
