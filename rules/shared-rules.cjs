@@ -144,6 +144,7 @@ module.exports = {
       custom: {
         regex: '[a-zA-Z]+(_[a-zA-Z\\d]+)*',
       },
+      format: ['camelCase', 'strictCamelCase', 'PascalCase', 'snake_case', 'UPPER_CASE'],
     },
     // Make sure types and interfaces are in PascalCase. (Also applies
     // to classes.)
