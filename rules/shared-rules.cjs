@@ -53,7 +53,13 @@ module.exports = {
   'no-else-return': 'warn',
   '@typescript-eslint/consistent-type-imports': [
     'error',
-    { prefer: 'type-imports', fixStyle: 'separate-type-imports' },
+    {
+      prefer: 'type-imports',
+      fixStyle: 'separate-type-imports',
+      // Must be false or else xstate's typegen imports (which dynamically
+      // import types) fail.
+      disallowTypeAnnotations: false,
+    },
   ],
   'prefer-template': 'warn',
   'no-plusplus': 'off',
