@@ -79,6 +79,7 @@ module.exports = {
   'tsdoc/syntax': 'off',
   // Conflicts w/ prettier:
   'object-curly-newline': 'off',
+  curly: ['error', 'all'],
   'operator-linebreak': 'off',
   'implicit-arrow-linebreak': 'off',
   'function-paren-newline': 'off',
@@ -140,7 +141,9 @@ module.exports = {
     // often require these.
     {
       selector: 'objectLiteralProperty',
-      format: ['camelCase', 'snake_case'],
+      custom: {
+        regex: '[a-zA-Z]+(_[a-zA-Z\\d]+)*',
+      },
     },
     // Make sure types and interfaces are in PascalCase. (Also applies
     // to classes.)
