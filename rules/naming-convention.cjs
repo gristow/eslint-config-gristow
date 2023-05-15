@@ -56,7 +56,7 @@ module.exports = {
     // our interaction with external libraries where options objects
     // often require these.
     {
-      selector: 'objectLiteralProperty',
+      selector: ['objectLiteralProperty', 'objectLiteralMethod', 'parameterProperty'],
       filter: {
         regex: '^[a-zA-Z]+(_[a-zA-Z\\d]+)*$',
         match: true,
