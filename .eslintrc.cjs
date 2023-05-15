@@ -26,7 +26,7 @@ module.exports = {
   },
   rules: {
     ...rules,
-    ...importRules
+    ...importRules,
   },
   env: {
     browser: true,

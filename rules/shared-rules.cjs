@@ -20,7 +20,6 @@ module.exports = {
   'no-unreachable': 'error',
   'no-use-before-define': ['error', { functions: false }],
   // '@-define': ['error', { functions: false }],
-  'no-duplicate-imports': 'error',
   'no-debugger': 'off',
   'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
   'prefer-arrow-callback': 'off',

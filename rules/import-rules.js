@@ -1,4 +1,6 @@
 module.exports = {
+  'no-duplicate-imports': 'off',
+  'import/no-duplicates': ['error', { 'prefer-inline': false }],
   'import/no-deprecated': 'warn',
   'import/export': 'error',
   'import/no-empty-named-blocks': 'error',
@@ -26,7 +28,6 @@ module.exports = {
   'import/no-nodejs-modules': 'off',
   'import/first': 'off',
   'import/imports-first': 'off',
-  'import/no-duplicates': 'off',
   'import/no-namespace': 'off',
   'import/extensions': 'off',
   'import/prefer-default-export': 'off',

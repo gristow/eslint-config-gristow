@@ -1,5 +1,6 @@
 import { greetJS } from './test-js-export';
-import { greet, snake_case_import } from './test-ts-export';
+import { apple, snake_case_import, greet } from './test-ts-export';
+import type { Apple } from './test-ts-export';
 
 greetJS('Johnny', 'Appleseed');
 greet('Jenny', 'Applesseed');
@@ -48,6 +49,9 @@ const coordinates = {
 };
 
 const { x_top } = coordinates;
+
+const a: Apple = apple;
+console.log(a);
 
 throw 'hello';
 
