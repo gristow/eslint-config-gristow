@@ -56,3 +56,9 @@ console.log(a);
 throw 'hello';
 
 console.log('unreachable code error!');
+
+later();
+
+function later() {
+  return 'later';
+}

@@ -1,5 +1,6 @@
 const rules = require('./rules/shared-rules.cjs');
 const importRules = require('./rules/import-rules.js');
+const typescriptOnlyRules = require('./rules/typescript-only-rules.cjs');
 
 module.exports = {
   root: true,
@@ -32,5 +33,9 @@ module.exports = {
     browser: true,
     es2017: true,
     node: true,
+  },
+  overrides: {
+    files: ['*.ts'],
+    rules: typescriptOnlyRules,
   },
 };

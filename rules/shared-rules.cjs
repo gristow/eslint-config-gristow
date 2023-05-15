@@ -102,4 +102,5 @@ module.exports = {
   // }],
   camelcase: 'off',
   ...namingConvention,
+  '@typescript-eslint/no-unnecessary-condition': ['warn'],
 };
