@@ -16,6 +16,7 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2020,
+    project: './tsconfig.json',
   },
   settings: {
     'import/parsers': {
@@ -34,8 +35,10 @@ module.exports = {
     es2017: true,
     node: true,
   },
-  overrides: {
-    files: ['*.ts'],
-    rules: typescriptOnlyRules,
-  },
+  overrides: [
+    {
+      files: ['*.ts'],
+      rules: typescriptOnlyRules,
+    },
+  ],
 };
