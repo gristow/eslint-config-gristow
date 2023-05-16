@@ -83,7 +83,8 @@ module.exports = {
   'no-redeclare': 'off',
   '@typescript-eslint/no-redeclare': 'error',
   // Enabled by airbnb -- but we use literal throws extensively, and intentionally, in /backend
-  'no-throw-literal': 'off',
+  // so we override this there.
+  'no-throw-literal': 'on',
   '@typescript-eslint/no-throw-literal': 'off',
   'no-useless-constructor': 'off',
   '@typescript-eslint/no-useless-constructor': 'error',
