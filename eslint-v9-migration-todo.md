@@ -20,11 +20,11 @@ This document outlines the migration from ESLint 8 (legacy `.eslintrc.cjs` forma
 | `index.js` | Update | Export flat config |
 | `svelte.js` | Update | Export flat Svelte config |
 | `svelte/svelte.eslintrc.cjs` | Replace | `svelte/svelte.config.js` |
-| `rules/shared-rules.cjs` | Keep | Convert to ESM |
-| `rules/import-rules.js` | Keep | Convert to ESM |
-| `rules/naming-convention.cjs` | Keep | Convert to ESM |
-| `rules/typescript-only-rules.cjs` | Keep | Convert to ESM |
-| `rules/svelte-rules.cjs` | Keep | Convert to ESM |
+| `rules/shared-rules.cjs` | ✅ Converted | `rules/shared-rules.js` |
+| `rules/import-rules.js` | ✅ Updated | `rules/import-rules.js` |
+| `rules/naming-convention.cjs` | ✅ Converted | `rules/naming-convention.js` |
+| `rules/typescript-only-rules.cjs` | ✅ Converted | `rules/typescript-only-rules.js` |
+| `rules/svelte-rules.cjs` | ✅ Converted | `rules/svelte-rules.js` |
 | (new) | ✅ Created | `rules/airbnb-base-rules.js` |
 | (new) | ✅ Created | `rules/airbnb-best-practices.js` |
 | (new) | ✅ Created | `rules/airbnb-errors.js` |
@@ -64,25 +64,23 @@ Since `eslint-config-airbnb-base` hasn't been updated for ESLint 9, we need to e
 
 ---
 
-## Phase 2: Convert Existing Rule Files to ESM
+## Phase 2: Convert Existing Rule Files to ESM ✅ COMPLETED
 
-### 2.1 Convert `rules/shared-rules.cjs` to `rules/shared-rules.js`
-- [ ] Change `module.exports` to `export default`
-- [ ] Change `require()` to `import`
-- [ ] Update naming-convention import
+### 2.1 Convert `rules/naming-convention.cjs` to `rules/naming-convention.js` ✅
+- [x] Changed `module.exports` to `export default`
 
-### 2.2 Convert `rules/naming-convention.cjs` to `rules/naming-convention.js`
-- [ ] Change `module.exports` to `export default`
+### 2.2 Convert `rules/shared-rules.cjs` to `rules/shared-rules.js` ✅
+- [x] Changed `module.exports` to `export default`
+- [x] Changed `require()` to `import`
 
-### 2.3 Convert `rules/typescript-only-rules.cjs` to `rules/typescript-only-rules.js`
-- [ ] Change `module.exports` to `export default`
+### 2.3 Convert `rules/typescript-only-rules.cjs` to `rules/typescript-only-rules.js` ✅
+- [x] Changed `module.exports` to `export default`
 
-### 2.4 Convert `rules/svelte-rules.cjs` to `rules/svelte-rules.js`
-- [ ] Change `module.exports` to `export default`
+### 2.4 Convert `rules/svelte-rules.cjs` to `rules/svelte-rules.js` ✅
+- [x] Changed `module.exports` to `export default`
 
-### 2.5 Keep `rules/import-rules.js`
-- [ ] Already ESM-compatible (uses `module.exports` but in `.js`)
-- [ ] Update to proper ESM syntax if needed
+### 2.5 Update `rules/import-rules.js` ✅
+- [x] Changed `module.exports` to `export default`
 
 ---
 
@@ -334,7 +332,7 @@ Tasks:
 
 ### Must Complete
 - [x] Create Airbnb rule replacement files ✅
-- [ ] Convert all rule files to ESM
+- [x] Convert all rule files to ESM ✅
 - [ ] Create main `eslint.config.js`
 - [ ] Create Svelte `svelte.config.js`
 - [ ] Update all dependencies
