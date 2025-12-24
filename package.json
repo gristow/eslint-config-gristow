@@ -9,9 +9,10 @@
     "./eslint.config.js": "./eslint.config.js"
   },
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "test": "node test/validate-config.js"
+    "lint": "eslint . --ignore-pattern test/fixtures/",
+    "lint:fix": "eslint . --fix --ignore-pattern test/fixtures/",
+    "test": "node --test test/rules.test.js",
+    "test:validate": "node test/validate-config.js"
   },
   "author": "Greg Ristow",
   "license": "ISC",

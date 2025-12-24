@@ -51,7 +51,7 @@ export default defineConfig(
         sourceType: 'module',
         ecmaVersion: 2020,
         projectService: {
-          allowDefaultProject: ['test/sample.js'],
+          allowDefaultProject: ['test/sample.js', 'test/fixtures/*.js'],
         },
       },
       globals: {
@@ -86,4 +86,11 @@ export default defineConfig(
 
   // Prettier must be last to override formatting rules
   eslintConfigPrettier,
+
+  // Re-enable curly after Prettier (we want this enforced for code safety)
+  {
+    rules: {
+      curly: ['error', 'all'],
+    },
+  },
 );

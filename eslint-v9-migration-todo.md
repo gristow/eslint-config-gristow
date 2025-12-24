@@ -175,8 +175,9 @@ JavaScript/TypeScript linting only.
 
 ### 7.1 Setup automated testing ✅
 - [x] Create `test/` directory with sample JS and TS files
-- [x] Add `npm run test` script to validate config loads correctly
-- [x] Create `test/validate-config.js` to test config loading and linting
+- [x] Add `npm run test` script using Node.js built-in test runner
+- [x] Create `test/validate-config.js` for basic config validation
+- [x] Create `test/rules.test.js` with comprehensive rule detection tests
 
 ### 7.2 Test configuration locally ✅
 - [x] Run `npm run lint` on project files
@@ -184,10 +185,25 @@ JavaScript/TypeScript linting only.
 - [x] Test TypeScript file linting (`test/sample.ts`)
 - [x] Test JavaScript file linting (`test/sample.js`)
 
-### 7.3 Verify config exports correctly ✅
-- [x] Verify flat config can be imported
-- [x] Verify config exports 8 configuration objects
-- [x] Test that rules are applied correctly (no-shadow, naming-convention, etc.)
+### 7.3 Verify rules detect violations ✅
+- [x] Create `test/fixtures/invalid.js` with intentional JS violations
+- [x] Create `test/fixtures/invalid.ts` with intentional TS violations
+- [x] Test individual rules detect violations:
+  - `@typescript-eslint/no-unused-vars` ✅
+  - `no-var` ✅
+  - `curly` ✅
+  - `no-shadow` ✅
+  - `eqeqeq` ✅
+  - `no-throw-literal` ✅
+  - `prefer-const` ✅
+  - `@typescript-eslint/naming-convention` ✅
+  - `@typescript-eslint/consistent-type-imports` ✅
+- [x] Re-enable `curly` rule after Prettier config (was being disabled)
+
+### 7.4 Test valid code passes ✅
+- [x] Verify valid JavaScript passes without errors
+- [x] Verify valid TypeScript passes without errors
+- [x] Verify sample files pass linting
 
 ---
 
