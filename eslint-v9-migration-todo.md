@@ -127,26 +127,26 @@ JavaScript/TypeScript linting only.
 
 ---
 
-## Phase 5: Update Dependencies
+## Phase 5: Update Dependencies ✅ COMPLETED
 
-### 5.1 Update `package.json`
-- [ ] Update `eslint` to `^9.0.0` or latest
-- [ ] Update `@typescript-eslint/eslint-plugin` to `^8.0.0` (v9-compatible)
-- [ ] Update `@typescript-eslint/parser` to `^8.0.0`
-- [ ] Update `eslint-config-prettier` to latest v9-compatible version
-- [ ] Update `eslint-plugin-import` to v9-compatible version (or use `eslint-plugin-import-x`)
-- [ ] Update `eslint-plugin-svelte` to latest v9-compatible version
-- [ ] Add `globals` package for global definitions
-- [ ] Add `typescript-eslint` package (combines parser + plugin)
-- [ ] Remove Airbnb configs (`eslint-config-airbnb`, `eslint-config-airbnb-base`, `eslint-config-airbnb-typescript`)
-- [ ] Update peer dependencies accordingly
+### 5.1 Update `package.json` ✅
+- [x] Update `eslint` to `^9.0.0` (peer + dev dependency)
+- [x] Use `typescript-eslint` ^8.0.0 (combines parser + plugin, replaces separate packages)
+- [x] Update `eslint-config-prettier` to `^10.0.0` (v9-compatible)
+- [x] Update `eslint-plugin-import` to `^2.31.0` (v9-compatible)
+- [x] Add `eslint-import-resolver-typescript` ^3.6.0
+- [x] Add `@eslint/js` ^9.0.0 for eslint.configs.recommended
+- [x] Add `globals` ^16.0.0 for global definitions
+- [x] Remove Airbnb configs (replaced with custom rule sets)
+- [x] Remove Svelte plugin (handled by `sv create`)
+- [x] Update peer dependencies (eslint ^9.0.0, typescript ^5.0.0)
+- [x] Add `"type": "module"` to package.json
+- [x] Add `exports` field for proper ESM support
 
-### 5.2 Verify plugin compatibility
-- [ ] Check `eslint-plugin-import` v9 support (may need `eslint-plugin-import-x`)
-- [ ] Check `eslint-plugin-svelte` v9 support
-- [ ] Check `eslint-plugin-jsdoc` v9 support
-- [ ] Check `eslint-plugin-tsdoc` v9 support
-- [ ] Check `eslint-plugin-prettier` v9 support
+### 5.2 Verify plugin compatibility ✅
+- [x] `eslint-plugin-import` v2.31.0 - works with ESLint 9
+- [x] `eslint-config-prettier` v10.0.0 - works with ESLint 9
+- [x] `typescript-eslint` v8.x - designed for ESLint 9
 
 ---
 
@@ -154,19 +154,19 @@ JavaScript/TypeScript linting only.
 
 ### 6.1 Remove legacy files
 - [ ] Delete `.eslintrc.cjs`
-- [ ] Delete `svelte/svelte.eslintrc.cjs`
-- [ ] Delete old `.cjs` rule files after converting to `.js`
+- [x] Delete `svelte/svelte.eslintrc.cjs` (done in Phase 4)
+- [x] Delete old `.cjs` rule files after converting to `.js` (done in Phase 2)
 
 ### 6.2 Update documentation
-- [ ] Update `README.md` with new usage instructions
-- [ ] Document flat config usage for consumers
-- [ ] Note breaking changes from v2.x to v3.x
+- [x] Update `README.md` with new usage instructions (done in Phase 4)
+- [x] Document flat config usage for consumers (done in Phase 4)
+- [ ] Note breaking changes from v2.x to v3.x (in CHANGELOG.md)
 
 ### 6.3 Update package metadata
 - [ ] Bump major version to `3.0.0`
-- [ ] Update `main` field if needed
-- [ ] Add `exports` field for proper ESM support
-- [ ] Update `type` to `"module"` in package.json
+- [x] Update `main` field if needed (kept as `index.js`)
+- [x] Add `exports` field for proper ESM support (done in Phase 5)
+- [x] Update `type` to `"module"` in package.json (done in Phase 5)
 
 ---
 
@@ -239,7 +239,7 @@ JavaScript/TypeScript linting only.
 - [x] Convert all rule files to ESM ✅
 - [x] Create main `eslint.config.js` ✅
 - [x] Remove Svelte configuration (use `sv create` instead) ✅
-- [ ] Update all dependencies
+- [x] Update all dependencies ✅
 - [x] Update entry points (`index.js`) ✅
 - [ ] Test configuration
 - [ ] Bump to v3.0.0
