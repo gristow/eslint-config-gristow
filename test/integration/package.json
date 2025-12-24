@@ -1,0 +1,16 @@
+{
+  "name": "integration-test",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:valid": "eslint valid.js valid.ts",
+    "lint:invalid": "eslint invalid.js"
+  },
+  "dependencies": {
+    "eslint": "^9.39.2",
+    "eslint-config-gristow": "^3.0.0-alpha.2",
+    "typescript": "^5.9.3"
+  }
+}

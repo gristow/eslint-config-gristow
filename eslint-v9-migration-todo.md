@@ -222,11 +222,12 @@ JavaScript/TypeScript linting only.
 - [x] Version already set to 3.0.0 in package.json (done in Phase 6)
 - [ ] Create git tag: `git tag v3.0.0`
 
-### 8.3 Publish to npm
-- [ ] Login to npm: `npm login`
+### 8.3 Publish to npm ✅
+- [x] Login to npm: `npm login`
 - [x] Run `npm publish --dry-run` to verify package contents
 - [x] Review files that will be published (16 files)
-- [ ] Publish: `npm publish`
+- [x] Publish alpha: `npm publish --tag next` (v3.0.0-alpha.1, v3.0.0-alpha.2)
+- [ ] Publish final: `npm publish` (after verification complete)
 - [ ] Verify package on npmjs.com
 
 ### 8.4 Push to git remote
@@ -235,10 +236,11 @@ JavaScript/TypeScript linting only.
 - [ ] Push tags: `git push origin --tags`
 - [ ] Create GitHub release (if applicable) with changelog notes
 
-### 8.5 Post-deployment verification
-- [ ] Install package in a fresh project: `npm install eslint-config-gristow@3.0.0`
-- [ ] Verify flat config works correctly
-- [ ] Check for any console errors or warnings
+### 8.5 Post-deployment verification ✅
+- [x] Install package in a fresh project: `npm install eslint-config-gristow@next`
+- [x] Verify flat config works correctly
+- [x] Check for any console errors or warnings
+- [x] Integration test added in `test/integration/`
 
 ### 8.6 Notify consumers (optional)
 - [ ] Update any dependent projects to use v3.0.0
