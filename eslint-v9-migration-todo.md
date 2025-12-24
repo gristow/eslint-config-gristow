@@ -18,13 +18,13 @@ This document outlines the migration from ESLint 8 (legacy `.eslintrc.cjs` forma
 |--------------|--------|----------|
 | `.eslintrc.cjs` | ✅ Replaced | `eslint.config.js` |
 | `index.js` | ✅ Updated | Export flat config |
-| `svelte.js` | Update | Export flat Svelte config |
-| `svelte/svelte.eslintrc.cjs` | Replace | `svelte/svelte.config.js` |
+| `svelte.js` | ❌ Removed | (Svelte handled by `sv create`) |
+| `svelte/svelte.eslintrc.cjs` | ❌ Removed | (Svelte handled by `sv create`) |
+| `rules/svelte-rules.js` | ❌ Removed | (Svelte handled by `sv create`) |
 | `rules/shared-rules.cjs` | ✅ Converted | `rules/shared-rules.js` |
 | `rules/import-rules.js` | ✅ Updated | `rules/import-rules.js` |
 | `rules/naming-convention.cjs` | ✅ Converted | `rules/naming-convention.js` |
 | `rules/typescript-only-rules.cjs` | ✅ Converted | `rules/typescript-only-rules.js` |
-| `rules/svelte-rules.cjs` | ✅ Converted | `rules/svelte-rules.js` |
 | (new) | ✅ Created | `rules/airbnb-base-rules.js` |
 | (new) | ✅ Created | `rules/airbnb-best-practices.js` |
 | (new) | ✅ Created | `rules/airbnb-errors.js` |
@@ -102,8 +102,28 @@ Since `eslint-config-airbnb-base` hasn't been updated for ESLint 9, we need to e
 
 ---
 
-## Phase 4: Remove Svelte configuration
-These will be handled by following `sv create`'s recommended setup in dependent projects.
+## Phase 4: Remove Svelte Configuration ✅ COMPLETED
+
+Svelte projects should use `sv create`'s recommended ESLint setup, which provides
+better integration with SvelteKit and Svelte 5. This package will focus on
+JavaScript/TypeScript linting only.
+
+### 4.1 Remove Svelte-specific files ✅
+- [x] Deleted `svelte.js` (entry point)
+- [x] Deleted `svelte/svelte.eslintrc.cjs` (old config)
+- [x] Deleted `svelte/` directory
+- [x] Deleted `rules/svelte-rules.js`
+
+### 4.2 Update documentation ✅
+- [x] Updated README.md for ESLint 9 flat config usage
+- [x] Added note that Svelte users should use `sv create` setup
+
+### 4.3 Update package.json ✅
+- [x] Removed `eslint-plugin-svelte` from dependencies
+- [x] Removed `eslint-plugin-svelte` from peerDependencies
+
+### 4.4 Update files table in this document ✅
+- [x] Marked Svelte files as removed
 
 ---
 
@@ -218,9 +238,9 @@ These will be handled by following `sv create`'s recommended setup in dependent 
 - [x] Create Airbnb rule replacement files ✅
 - [x] Convert all rule files to ESM ✅
 - [x] Create main `eslint.config.js` ✅
-- [ ] Create Svelte `svelte.config.js`
+- [x] Remove Svelte configuration (use `sv create` instead) ✅
 - [ ] Update all dependencies
-- [ ] Update entry points (`index.js`, `svelte.js`)
+- [x] Update entry points (`index.js`) ✅
 - [ ] Test configuration
 - [ ] Bump to v3.0.0
 - [ ] Publish to npm
