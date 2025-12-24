@@ -1,4 +1,7 @@
-module.exports = {
+/**
+ * TypeScript Naming Convention Rules
+ */
+export default {
   '@typescript-eslint/naming-convention': [
     'error',
     // By default, all should be camelCase

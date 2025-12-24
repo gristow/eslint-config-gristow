@@ -4,14 +4,23 @@
     "allowJs": true,
     "sourceMap": true,
     "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "noUnusedLocals": true,
     "declaration": false,
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+    "strict": true
   },
 
+  "include": [
+    "*.js",
+    "rules/**/*.js",
+    "test/**/*.js",
+    "test/**/*.ts"
+  ],
   "exclude": [
-    "node_modules",
+    "node_modules"
   ]
 }

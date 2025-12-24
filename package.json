@@ -1,58 +1,56 @@
 {
   "name": "eslint-config-gristow",
-  "version": "2.0.17",
-  "description": "Eslint settings for Greg Ristow",
+  "version": "3.0.0-alpha.2",
+  "description": "ESLint 9 flat config for JavaScript and TypeScript projects",
+  "type": "module",
   "main": "index.js",
-  "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+  "exports": {
+    ".": "./index.js",
+    "./eslint.config.js": "./eslint.config.js"
   },
-  "author": "",
+  "scripts": {
+    "lint": "eslint . --ignore-pattern test/fixtures/",
+    "lint:fix": "eslint . --fix --ignore-pattern test/fixtures/",
+    "test": "node --test test/rules.test.js",
+    "test:validate": "node test/validate-config.js"
+  },
+  "author": "Greg Ristow",
   "license": "ISC",
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "eslint-config",
+    "typescript",
+    "flat-config"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gristow/eslint-config-gristow"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    "eslint.config.js",
+    "rules/",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.59.5",
-    "@typescript-eslint/parser": "^5.59.5",
-    "eslint": "^8.40.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-import-resolver-typescript": "^3.5.5",
-    "eslint-plugin-html": "^7.1.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsdoc": "^44.2.3",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-svelte": "^2.28.0",
-    "eslint-plugin-tsdoc": "^0.2.14",
-    "prettier": "^2.8.8"
+    "@eslint/js": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-import-resolver-typescript": "^3.6.0",
+    "eslint-plugin-import": "^2.31.0",
+    "globals": "^16.0.0",
+    "typescript-eslint": "^8.0.0"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.59.5",
-    "@typescript-eslint/parser": "^5.59.5",
-    "eslint": "^8.40.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^3.5.5",
-    "eslint-plugin-html": "^7.1.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsdoc": "^44.2.3",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-svelte": "^2.28.0",
-    "eslint-plugin-tsdoc": "^0.2.14",
-    "prettier": "^2.8.6",
-    "typescript": "^5.0.4"
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-tsdoc": "^0.2.14",
-    "typescript": ">=5.0.4"
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0"
   }
 }
