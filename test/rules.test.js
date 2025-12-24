@@ -13,14 +13,71 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert';
 import { ESLint } from 'eslint';
 import config from '../index.js';
+import projectConfig from '../eslint.config.js';
 
 /**
- * Create an ESLint instance with our config
+ * Create an ESLint instance with our exported config (for testing the public API)
  */
 function createESLint() {
   return new ESLint({
     overrideConfigFile: true,
     overrideConfig: config,
+  });
+}
+
+/**
+ * Create an ESLint instance with project-specific config (includes allowDefaultProject for test files)
+ */
+function createESLintForFixtures() {
+  return new ESLint({
+    overrideConfigFile: true,
+    overrideConfig: projectConfig,
+  });
+}
+
+/**
+ * Create an ESLint instance for lintText tests (without projectService requirement)
+ * This is needed because lintText with virtual file paths doesn't work with projectService
+ */
+function createESLintForText() {
+  // Clone config and override parserOptions to not require projectService for virtual files
+  const textConfig = config.map((c) => {
+    if (c.languageOptions?.parserOptions?.projectService) {
+      return {
+        ...c,
+        languageOptions: {
+          ...c.languageOptions,
+          parserOptions: {
+            ...c.languageOptions.parserOptions,
+            projectService: false,
+            project: null,
+          },
+        },
+      };
+    }
+    return c;
+  });
+
+  // Disable type-aware rules that require projectService/type information
+  textConfig.push({
+    rules: {
+      '@typescript-eslint/no-unnecessary-condition': 'off',
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/await-thenable': 'off',
+      '@typescript-eslint/no-misused-promises': 'off',
+      '@typescript-eslint/require-await': 'off',
+      '@typescript-eslint/strict-boolean-expressions': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+    },
+  });
+
+  return new ESLint({
+    overrideConfigFile: true,
+    overrideConfig: textConfig,
   });
 }
 
@@ -52,9 +109,9 @@ describe('Config Loading', () => {
 
 describe('JavaScript Rule Detection', () => {
   it('should detect no-unused-vars violations', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `const unused = 'never used';`;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.js' });
+    const results = await eslint.lintText(code, { filePath: 'test.js' });
 
     assert.ok(
       hasRule(results, '@typescript-eslint/no-unused-vars'),
@@ -63,23 +120,23 @@ describe('JavaScript Rule Detection', () => {
   });
 
   it('should detect no-var violations', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `var oldStyle = 'bad'; export default oldStyle;`;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.js' });
+    const results = await eslint.lintText(code, { filePath: 'test.js' });
 
     assert.ok(hasRule(results, 'no-var'), `Should detect var usage, got: ${getRuleIds(results).join(', ')}`);
   });
 
   it('should detect curly brace violations', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `const x = 1; if (x > 0) console.log('no braces');`;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.js' });
+    const results = await eslint.lintText(code, { filePath: 'test.js' });
 
     assert.ok(hasRule(results, 'curly'), `Should detect missing curly braces, got: ${getRuleIds(results).join(', ')}`);
   });
 
   it('should detect no-shadow violations', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `
       const name = 'outer';
       function test() {
@@ -88,31 +145,31 @@ describe('JavaScript Rule Detection', () => {
       }
       export { test };
     `;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.js' });
+    const results = await eslint.lintText(code, { filePath: 'test.js' });
 
     assert.ok(hasRule(results, 'no-shadow'), `Should detect variable shadowing, got: ${getRuleIds(results).join(', ')}`);
   });
 
   it('should detect eqeqeq violations', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `
       const x = 1;
       if (x == '1') { console.log('loose'); }
     `;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.js' });
+    const results = await eslint.lintText(code, { filePath: 'test.js' });
 
     assert.ok(hasRule(results, 'eqeqeq'), `Should detect loose equality, got: ${getRuleIds(results).join(', ')}`);
   });
 
   it('should detect no-throw-literal violations', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `
       function fail() {
         throw 'error string';
       }
       export { fail };
     `;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.js' });
+    const results = await eslint.lintText(code, { filePath: 'test.js' });
 
     assert.ok(
       hasRule(results, 'no-throw-literal'),
@@ -121,12 +178,12 @@ describe('JavaScript Rule Detection', () => {
   });
 
   it('should detect prefer-const violations', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `
       let neverReassigned = 'value';
       console.log(neverReassigned);
     `;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.js' });
+    const results = await eslint.lintText(code, { filePath: 'test.js' });
 
     assert.ok(
       hasRule(results, 'prefer-const'),
@@ -137,14 +194,14 @@ describe('JavaScript Rule Detection', () => {
 
 describe('TypeScript Rule Detection', () => {
   it('should detect naming convention violations for classes', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `
       class badClassName {
         value: number = 0;
       }
       export { badClassName };
     `;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.ts' });
+    const results = await eslint.lintText(code, { filePath: 'test.ts' });
 
     assert.ok(
       hasRule(results, '@typescript-eslint/naming-convention'),
@@ -153,14 +210,14 @@ describe('TypeScript Rule Detection', () => {
   });
 
   it('should detect naming convention violations for interfaces', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `
       interface badInterfaceName {
         prop: string;
       }
       export type { badInterfaceName };
     `;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.ts' });
+    const results = await eslint.lintText(code, { filePath: 'test.ts' });
 
     assert.ok(
       hasRule(results, '@typescript-eslint/naming-convention'),
@@ -169,13 +226,13 @@ describe('TypeScript Rule Detection', () => {
   });
 
   it('should detect consistent-type-imports violations', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `
       import { SomeType } from './types';
       const x: SomeType = { id: 1, name: 'test' };
       export { x };
     `;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.ts' });
+    const results = await eslint.lintText(code, { filePath: 'test.ts' });
 
     assert.ok(
       hasRule(results, '@typescript-eslint/consistent-type-imports'),
@@ -186,7 +243,7 @@ describe('TypeScript Rule Detection', () => {
 
 describe('Valid Code', () => {
   it('should pass valid JavaScript without errors', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `
       const greeting = 'Hello';
 
@@ -199,7 +256,7 @@ describe('Valid Code', () => {
 
       export { sayHello };
     `;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.js' });
+    const results = await eslint.lintText(code, { filePath: 'test.js' });
 
     assert.strictEqual(
       results[0].errorCount,
@@ -209,7 +266,7 @@ describe('Valid Code', () => {
   });
 
   it('should pass valid TypeScript without errors', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForText();
     const code = `
       interface Person {
         name: string;
@@ -226,7 +283,7 @@ describe('Valid Code', () => {
       export { greet };
       export type { Person };
     `;
-    const results = await eslint.lintText(code, { filePath: 'test/sample.ts' });
+    const results = await eslint.lintText(code, { filePath: 'test.ts' });
 
     assert.strictEqual(
       results[0].errorCount,
@@ -238,7 +295,7 @@ describe('Valid Code', () => {
 
 describe('Fixture Files', () => {
   it('should detect multiple violations in invalid.js fixture', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForFixtures();
     const results = await eslint.lintFiles(['test/fixtures/invalid.js']);
 
     assert.ok(results[0].errorCount > 0, 'Should detect errors in invalid.js');
@@ -263,7 +320,7 @@ describe('Fixture Files', () => {
   });
 
   it('should detect multiple violations in invalid.ts fixture', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForFixtures();
     const results = await eslint.lintFiles(['test/fixtures/invalid.ts']);
 
     assert.ok(results[0].errorCount > 0, 'Should detect errors in invalid.ts');
@@ -287,7 +344,7 @@ describe('Fixture Files', () => {
   });
 
   it('should pass valid sample files without errors', async () => {
-    const eslint = createESLint();
+    const eslint = createESLintForFixtures();
     const results = await eslint.lintFiles([
       'test/sample.js',
       'test/sample.ts',
