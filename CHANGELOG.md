@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [3.0.0] - 2024-12-24
+## [3.0.0] - 2025-12-24
 
 ### Breaking Changes
 
@@ -26,6 +26,8 @@ All notable changes to this project will be documented in this file.
 - `@eslint/js` for ESLint recommended rules
 - `globals` package for environment global definitions
 - Proper `exports` field in package.json
+- Automated test suite with comprehensive rule detection tests
+- `curly` rule re-enabled after Prettier config (enforces braces for all control statements)
 
 ### Changed
 
