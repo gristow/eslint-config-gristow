@@ -110,6 +110,15 @@ export default defineConfig(
     rules: typescriptOnlyRules,
   },
 
+  // Svelte-specific overrides
+  {
+    files: ['**/*.svelte'],
+    rules: {
+      // Svelte 5 $props() requires 'let' for reactive destructuring
+      'prefer-const': 'off',
+    },
+  },
+
   // Prettier must be last to override formatting rules
   eslintConfigPrettier,
 
