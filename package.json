@@ -10,7 +10,8 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "node test/validate-config.js"
   },
   "author": "Greg Ristow",
   "license": "ISC",

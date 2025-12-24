@@ -104,4 +104,6 @@ export default {
   camelcase: 'off',
   ...namingConvention,
   '@typescript-eslint/no-unnecessary-condition': ['warn'],
+  // Allow default exports (Airbnb restricts this, but it's a valid pattern)
+  'no-restricted-exports': 'off',
 };

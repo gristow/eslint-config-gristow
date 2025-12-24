@@ -50,7 +50,9 @@ export default defineConfig(
       parserOptions: {
         sourceType: 'module',
         ecmaVersion: 2020,
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ['test/sample.js'],
+        },
       },
       globals: {
         ...globals.browser,
