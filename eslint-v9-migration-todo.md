@@ -209,28 +209,28 @@ JavaScript/TypeScript linting only.
 
 ## Phase 8: Version Upgrade and Deploy
 
-### 8.1 Prepare release
-- [ ] Ensure all tests pass
-- [ ] Review all changes one final time
-- [ ] Update `CHANGELOG.md` (create if doesn't exist) with v3.0.0 changes
-- [ ] List breaking changes clearly
-- [ ] List new features (flat config, custom Airbnb rules)
-- [ ] List removed dependencies
+### 8.1 Prepare release ✅
+- [x] Ensure all tests pass (17 tests passing)
+- [x] Review all changes (12 commits on branch)
+- [x] Update `CHANGELOG.md` with v3.0.0 changes
+- [x] List breaking changes clearly
+- [x] List new features (flat config, custom Airbnb rules, test suite)
+- [x] List removed dependencies
+- [x] Add `files` field to package.json (16 files, 15.1 kB)
 
-### 8.2 Version bump
-- [ ] Run `npm version major` to bump to 3.0.0 (or manually update package.json)
-- [ ] Ensure version is updated in package.json
-- [ ] Commit version bump: `git commit -m "chore: bump version to 3.0.0"`
+### 8.2 Version bump ✅
+- [x] Version already set to 3.0.0 in package.json (done in Phase 6)
 - [ ] Create git tag: `git tag v3.0.0`
 
 ### 8.3 Publish to npm
-- [ ] Ensure you're logged in: `npm whoami`
-- [ ] Run `npm publish --dry-run` to verify package contents
-- [ ] Review files that will be published (check `.npmignore` or `files` field)
+- [ ] Login to npm: `npm login`
+- [x] Run `npm publish --dry-run` to verify package contents
+- [x] Review files that will be published (16 files)
 - [ ] Publish: `npm publish`
 - [ ] Verify package on npmjs.com
 
 ### 8.4 Push to git remote
+- [ ] Merge to master or push branch
 - [ ] Push commits: `git push origin master`
 - [ ] Push tags: `git push origin --tags`
 - [ ] Create GitHub release (if applicable) with changelog notes
@@ -238,13 +238,11 @@ JavaScript/TypeScript linting only.
 ### 8.5 Post-deployment verification
 - [ ] Install package in a fresh project: `npm install eslint-config-gristow@3.0.0`
 - [ ] Verify flat config works correctly
-- [ ] Test both base and Svelte configurations in real project
 - [ ] Check for any console errors or warnings
 
 ### 8.6 Notify consumers (optional)
 - [ ] Update any dependent projects to use v3.0.0
 - [ ] Document migration steps for consumers upgrading from v2.x
-- [ ] Consider publishing a migration guide or blog post
 
 ---
 
@@ -259,8 +257,9 @@ JavaScript/TypeScript linting only.
 - [x] Update entry points (`index.js`) ✅
 - [x] Test configuration ✅
 - [x] Bump to v3.0.0 ✅
-- [ ] Publish to npm
+- [x] Prepare release (CHANGELOG, files field) ✅
 - [ ] Push to git with tags
+- [ ] Publish to npm
 
 ### Nice to Have
 - [ ] Add JSDoc types to config files
