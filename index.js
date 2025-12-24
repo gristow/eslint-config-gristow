@@ -116,6 +116,8 @@ export default defineConfig(
     rules: {
       // Svelte 5 $props() requires 'let' for reactive destructuring
       'prefer-const': 'off',
+      // Disable import/no-duplicates - same issue as TS files with .d.ts resolution
+      'import/no-duplicates': 'off',
     },
   },
 

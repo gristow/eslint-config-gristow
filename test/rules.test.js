@@ -190,6 +190,22 @@ describe('JavaScript Rule Detection', () => {
       `Should detect let that could be const, got: ${getRuleIds(results).join(', ')}`
     );
   });
+
+  it('should detect import/no-duplicates violations in JavaScript files', async () => {
+    const eslint = createESLintForText();
+    const code = `
+      import { foo } from './module';
+      import { bar } from './module';
+
+      export { foo, bar };
+    `;
+    const results = await eslint.lintText(code, { filePath: 'test.js' });
+
+    assert.ok(
+      hasRule(results, 'import/no-duplicates'),
+      `Should flag import/no-duplicates in JS files, got: ${getRuleIds(results).join(', ')}`
+    );
+  });
 });
 
 describe('TypeScript Rule Detection', () => {
@@ -307,6 +323,23 @@ describe('Valid Code', () => {
       results[0].errorCount,
       0,
       `Should allow PascalCase imports, but got: ${JSON.stringify(results[0].messages)}`
+    );
+  });
+
+  it('should not flag import/no-duplicates in TypeScript files', async () => {
+    const eslint = createESLintForText();
+    // Actual duplicate imports - would be flagged if rule were enabled
+    const code = `
+      import { foo } from './module';
+      import { bar } from './module';
+
+      export { foo, bar };
+    `;
+    const results = await eslint.lintText(code, { filePath: 'test.ts' });
+
+    assert.ok(
+      !hasRule(results, 'import/no-duplicates'),
+      `Should not flag import/no-duplicates in TS files, but got: ${getRuleIds(results).join(', ')}`
     );
   });
 });
