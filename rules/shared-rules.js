@@ -1,9 +1,9 @@
-const namingConvention = require('./naming-convention.cjs');
+import namingConvention from './naming-convention.js';
 
 /**
  * These rules are shared by both .js and .ts
  */
-module.exports = {
+export default {
   // We disable eslint's no-unused vars, and enable typescript's because
   // otherwise local vars listed in function overloads are flagged.
   'no-unused-vars': 'off',

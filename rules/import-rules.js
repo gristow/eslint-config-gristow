@@ -1,4 +1,7 @@
-module.exports = {
+/**
+ * Import plugin rules and overrides
+ */
+export default {
   'no-duplicate-imports': 'off',
   'import/no-duplicates': ['error', { 'prefer-inline': false }],
   'import/no-deprecated': 'warn',
