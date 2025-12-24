@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-gristow",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "ESLint 9 flat config for JavaScript and TypeScript projects",
   "type": "module",
   "main": "index.js",

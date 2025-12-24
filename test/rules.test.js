@@ -291,6 +291,24 @@ describe('Valid Code', () => {
       `Should have no errors, but got: ${JSON.stringify(results[0].messages)}`
     );
   });
+
+  it('should allow PascalCase imports for components', async () => {
+    const eslint = createESLintForText();
+    const code = `
+      import ButtonComponent from './ButtonComponent.svelte';
+      import { SomeClass } from 'some-library';
+      import camelCaseImport from 'another-library';
+
+      export { ButtonComponent, SomeClass, camelCaseImport };
+    `;
+    const results = await eslint.lintText(code, { filePath: 'test.ts' });
+
+    assert.strictEqual(
+      results[0].errorCount,
+      0,
+      `Should allow PascalCase imports, but got: ${JSON.stringify(results[0].messages)}`
+    );
+  });
 });
 
 describe('Fixture Files', () => {

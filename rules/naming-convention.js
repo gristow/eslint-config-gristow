@@ -42,6 +42,11 @@ export default {
       selector: 'variable',
       format: ['camelCase', 'UPPER_CASE'],
     },
+    // Allow PascalCase for imports (Svelte/React components, classes, etc.)
+    {
+      selector: 'import',
+      format: ['camelCase', 'PascalCase'],
+    },
     // Allow leading underscores in function params
     {
       selector: 'parameter',
