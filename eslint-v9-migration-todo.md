@@ -16,8 +16,8 @@ This document outlines the migration from ESLint 8 (legacy `.eslintrc.cjs` forma
 
 | Current File | Action | New File |
 |--------------|--------|----------|
-| `.eslintrc.cjs` | Replace | `eslint.config.js` |
-| `index.js` | Update | Export flat config |
+| `.eslintrc.cjs` | ✅ Replaced | `eslint.config.js` |
+| `index.js` | ✅ Updated | Export flat config |
 | `svelte.js` | Update | Export flat Svelte config |
 | `svelte/svelte.eslintrc.cjs` | Replace | `svelte/svelte.config.js` |
 | `rules/shared-rules.cjs` | ✅ Converted | `rules/shared-rules.js` |
@@ -84,142 +84,26 @@ Since `eslint-config-airbnb-base` hasn't been updated for ESLint 9, we need to e
 
 ---
 
-## Phase 3: Create Main Flat Config
+## Phase 3: Create Main Flat Config ✅ COMPLETED
 
-### 3.1 Create `eslint.config.js`
-Replace `.eslintrc.cjs` with flat config using `defineConfig`:
+### 3.1 Create `eslint.config.js` ✅
+- [x] Created flat config using `defineConfig`
+- [x] ESLint recommended + TypeScript-ESLint recommended
+- [x] Configured `languageOptions` with parser, parserOptions, globals
+- [x] Configured plugins as objects
+- [x] Applied Airbnb → shared → import rules in order
+- [x] TypeScript-specific file overrides
+- [x] Prettier config last
+- [x] Global ignores for node_modules, dist, build, .svelte-kit
 
-```javascript
-// @ts-check
-import { defineConfig } from 'eslint/config';
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import eslintConfigPrettier from 'eslint-config-prettier';
-import importPlugin from 'eslint-plugin-import';
-import globals from 'globals';
-
-// Import our custom rule sets
-import airbnbBaseRules from './rules/airbnb-base-rules.js';
-import sharedRules from './rules/shared-rules.js';
-import importRules from './rules/import-rules.js';
-import typescriptOnlyRules from './rules/typescript-only-rules.js';
-
-export default defineConfig(
-  // Global ignores
-  { ignores: ['**/node_modules/**', '**/dist/**'] },
-
-  // Base ESLint recommended
-  eslint.configs.recommended,
-
-  // TypeScript recommended
-  tseslint.configs.recommended,
-
-  // Main configuration
-  {
-    plugins: {
-      '@typescript-eslint': tseslint.plugin,
-      'import': importPlugin,
-    },
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        sourceType: 'module',
-        ecmaVersion: 2020,
-        projectService: true,
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.es2017,
-        ...globals.node,
-      },
-    },
-    settings: {
-      'import/parsers': {
-        '@typescript-eslint/parser': ['.ts'],
-      },
-      'import/resolver': {
-        typescript: true,
-      },
-    },
-    rules: {
-      ...airbnbBaseRules,
-      ...sharedRules,
-      ...importRules,
-    },
-  },
-
-  // TypeScript-specific overrides
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    rules: typescriptOnlyRules,
-  },
-
-  // Prettier must be last
-  eslintConfigPrettier,
-);
-```
-
-Tasks:
-- [ ] Create the file structure above
-- [ ] Import all rule sets
-- [ ] Configure `languageOptions` (replaces `parser`, `parserOptions`, `env`)
-- [ ] Configure `plugins` as objects (not arrays)
-- [ ] Configure `settings` for import resolver
-- [ ] Apply rules from custom rule sets
-- [ ] Add file-specific overrides
-- [ ] Ensure Prettier config is last
-
-### 3.2 Update `index.js` entry point
-- [ ] Export the flat config from `eslint.config.js`
-- [ ] Ensure consumers can use `extends: ['gristow']` or import directly
+### 3.2 Update `index.js` entry point ✅
+- [x] Re-exports flat config from `eslint.config.js`
+- [x] Added usage documentation in JSDoc
 
 ---
 
-## Phase 4: Create Svelte Flat Config
-
-### 4.1 Create `svelte/svelte.config.js`
-Replace `svelte/svelte.eslintrc.cjs`:
-
-```javascript
-// @ts-check
-import { defineConfig } from 'eslint/config';
-import baseConfig from '../eslint.config.js';
-import sveltePlugin from 'eslint-plugin-svelte';
-import svelteParser from 'svelte-eslint-parser';
-import tseslint from 'typescript-eslint';
-import svelteRules from '../rules/svelte-rules.js';
-
-export default defineConfig(
-  // Extend base config
-  ...baseConfig,
-
-  // Svelte plugin recommended
-  ...sveltePlugin.configs['flat/recommended'],
-
-  // Svelte-specific configuration
-  {
-    files: ['**/*.svelte'],
-    languageOptions: {
-      parser: svelteParser,
-      parserOptions: {
-        parser: tseslint.parser,
-        extraFileExtensions: ['.svelte'],
-      },
-    },
-    rules: svelteRules,
-  },
-);
-```
-
-Tasks:
-- [ ] Create the flat config file
-- [ ] Import and spread base config
-- [ ] Add Svelte plugin configuration
-- [ ] Configure Svelte parser with TypeScript
-- [ ] Apply Svelte-specific rules
-
-### 4.2 Update `svelte.js` entry point
-- [ ] Export the flat config from `svelte/svelte.config.js`
+## Phase 4: Remove Svelte configuration
+These will be handled by following `sv create`'s recommended setup in dependent projects.
 
 ---
 
@@ -333,7 +217,7 @@ Tasks:
 ### Must Complete
 - [x] Create Airbnb rule replacement files ✅
 - [x] Convert all rule files to ESM ✅
-- [ ] Create main `eslint.config.js`
+- [x] Create main `eslint.config.js` ✅
 - [ ] Create Svelte `svelte.config.js`
 - [ ] Update all dependencies
 - [ ] Update entry points (`index.js`, `svelte.js`)
