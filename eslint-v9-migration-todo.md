@@ -25,222 +25,42 @@ This document outlines the migration from ESLint 8 (legacy `.eslintrc.cjs` forma
 | `rules/naming-convention.cjs` | Keep | Convert to ESM |
 | `rules/typescript-only-rules.cjs` | Keep | Convert to ESM |
 | `rules/svelte-rules.cjs` | Keep | Convert to ESM |
-| (new) | Create | `rules/airbnb-base-rules.js` |
-| (new) | Create | `rules/airbnb-best-practices.js` |
-| (new) | Create | `rules/airbnb-errors.js` |
-| (new) | Create | `rules/airbnb-es6.js` |
-| (new) | Create | `rules/airbnb-imports.js` |
-| (new) | Create | `rules/airbnb-style.js` |
-| (new) | Create | `rules/airbnb-variables.js` |
+| (new) | ✅ Created | `rules/airbnb-base-rules.js` |
+| (new) | ✅ Created | `rules/airbnb-best-practices.js` |
+| (new) | ✅ Created | `rules/airbnb-errors.js` |
+| (new) | ✅ Created | `rules/airbnb-es6.js` |
+| (new) | ✅ Created | `rules/airbnb-imports.js` |
+| (new) | ✅ Created | `rules/airbnb-style.js` |
+| (new) | ✅ Created | `rules/airbnb-variables.js` |
 
 ---
 
-## Phase 1: Create Airbnb Rule Sets
+## Phase 1: Create Airbnb Rule Sets ✅ COMPLETED
 
 Since `eslint-config-airbnb-base` hasn't been updated for ESLint 9, we need to extract and maintain the rules ourselves. These will be ESM modules exporting rule objects.
 
-### 1.1 Create `rules/airbnb-best-practices.js`
-Extract ~85 rules from Airbnb's best-practices config:
-- [ ] `accessor-pairs: 'off'`
-- [ ] `array-callback-return: ['error', { allowImplicit: true }]`
-- [ ] `block-scoped-var: 'error'`
-- [ ] `class-methods-use-this: ['error', { exceptMethods: [] }]`
-- [ ] `consistent-return: 'error'`
-- [ ] `curly: ['error', 'multi-line']` (note: we override to `['error', 'all']`)
-- [ ] `default-case: ['error', { commentPattern: '^no default$' }]`
-- [ ] `default-case-last: 'error'`
-- [ ] `default-param-last: 'error'`
-- [ ] `dot-notation: ['error', { allowKeywords: true }]`
-- [ ] `eqeqeq: ['error', 'always', { null: 'ignore' }]`
-- [ ] `grouped-accessor-pairs: 'error'`
-- [ ] `guard-for-in: 'error'`
-- [ ] `max-classes-per-file: ['error', 1]`
-- [ ] `no-alert: 'warn'`
-- [ ] `no-caller: 'error'`
-- [ ] `no-case-declarations: 'error'`
-- [ ] `no-constructor-return: 'error'`
-- [ ] `no-else-return: ['error', { allowElseIf: false }]`
-- [ ] `no-empty-function: ['error', { allow: ['arrowFunctions', 'functions', 'methods'] }]`
-- [ ] `no-empty-pattern: 'error'`
-- [ ] `no-eval: 'error'`
-- [ ] `no-extend-native: 'error'`
-- [ ] `no-extra-bind: 'error'`
-- [ ] `no-extra-label: 'error'`
-- [ ] `no-fallthrough: 'error'`
-- [ ] `no-global-assign: 'error'`
-- [ ] `no-implied-eval: 'error'`
-- [ ] `no-iterator: 'error'`
-- [ ] `no-labels: ['error', { allowLoop: false, allowSwitch: false }]`
-- [ ] `no-lone-blocks: 'error'`
-- [ ] `no-loop-func: 'error'`
-- [ ] `no-multi-str: 'error'`
-- [ ] `no-new: 'error'`
-- [ ] `no-new-func: 'error'`
-- [ ] `no-new-wrappers: 'error'`
-- [ ] `no-nonoctal-decimal-escape: 'error'`
-- [ ] `no-octal: 'error'`
-- [ ] `no-octal-escape: 'error'`
-- [ ] `no-param-reassign: ['error', { props: true, ignorePropertyModificationsFor: [...] }]`
-- [ ] `no-proto: 'error'`
-- [ ] `no-redeclare: 'error'`
-- [ ] `no-restricted-properties: ['error', ...]`
-- [ ] `no-return-assign: ['error', 'always']`
-- [ ] `no-script-url: 'error'`
-- [ ] `no-self-assign: ['error', { props: true }]`
-- [ ] `no-self-compare: 'error'`
-- [ ] `no-sequences: 'error'`
-- [ ] `no-throw-literal: 'error'`
-- [ ] `no-unused-expressions: ['error', ...]`
-- [ ] `no-unused-labels: 'error'`
-- [ ] `no-useless-catch: 'error'`
-- [ ] `no-useless-concat: 'error'`
-- [ ] `no-useless-escape: 'error'`
-- [ ] `no-useless-return: 'error'`
-- [ ] `no-void: 'error'`
-- [ ] `no-with: 'error'`
-- [ ] `prefer-promise-reject-errors: ['error', { allowEmptyReject: true }]`
-- [ ] `prefer-regex-literals: ['error', { disallowRedundantWrapping: true }]`
-- [ ] `radix: 'error'`
-- [ ] `vars-on-top: 'error'`
-- [ ] `wrap-iife: ['error', 'outside', { functionPrototypeMethods: false }]`
-- [ ] `yoda: 'error'`
+### 1.1 Create `rules/airbnb-best-practices.js` ✅
+- [x] Extracted ~65 rules from Airbnb's best-practices config (9.2 KB)
 
-### 1.2 Create `rules/airbnb-errors.js`
-Extract ~50 rules from Airbnb's errors config:
-- [ ] `for-direction: 'error'`
-- [ ] `getter-return: ['error', { allowImplicit: true }]`
-- [ ] `no-async-promise-executor: 'error'`
-- [ ] `no-await-in-loop: 'error'`
-- [ ] `no-compare-neg-zero: 'error'`
-- [ ] `no-cond-assign: ['error', 'always']`
-- [ ] `no-console: 'warn'` (note: we override to `'off'`)
-- [ ] `no-constant-condition: 'warn'`
-- [ ] `no-control-regex: 'error'`
-- [ ] `no-debugger: 'error'` (note: we override to `'off'`)
-- [ ] `no-dupe-args: 'error'`
-- [ ] `no-dupe-else-if: 'error'`
-- [ ] `no-dupe-keys: 'error'`
-- [ ] `no-duplicate-case: 'error'`
-- [ ] `no-empty: 'error'`
-- [ ] `no-empty-character-class: 'error'`
-- [ ] `no-ex-assign: 'error'`
-- [ ] `no-extra-boolean-cast: 'error'`
-- [ ] `no-func-assign: 'error'`
-- [ ] `no-import-assign: 'error'`
-- [ ] `no-inner-declarations: 'error'`
-- [ ] `no-invalid-regexp: 'error'`
-- [ ] `no-irregular-whitespace: 'error'`
-- [ ] `no-loss-of-precision: 'error'`
-- [ ] `no-misleading-character-class: 'error'`
-- [ ] `no-obj-calls: 'error'`
-- [ ] `no-promise-executor-return: 'error'`
-- [ ] `no-prototype-builtins: 'error'`
-- [ ] `no-regex-spaces: 'error'`
-- [ ] `no-setter-return: 'error'`
-- [ ] `no-sparse-arrays: 'error'`
-- [ ] `no-template-curly-in-string: 'error'`
-- [ ] `no-unexpected-multiline: 'error'`
-- [ ] `no-unreachable: 'error'`
-- [ ] `no-unreachable-loop: 'error'`
-- [ ] `no-unsafe-finally: 'error'`
-- [ ] `no-unsafe-negation: 'error'`
-- [ ] `no-unsafe-optional-chaining: ['error', { disallowArithmeticOperators: true }]`
-- [ ] `no-useless-backreference: 'error'`
-- [ ] `use-isnan: 'error'`
-- [ ] `valid-typeof: ['error', { requireStringLiterals: true }]`
+### 1.2 Create `rules/airbnb-errors.js` ✅
+- [x] Extracted ~45 rules from Airbnb's errors config (4.6 KB)
 
-### 1.3 Create `rules/airbnb-es6.js`
-Extract ~35 rules from Airbnb's ES6 config:
-- [ ] `arrow-body-style: ['error', 'as-needed', { requireReturnForObjectLiteral: false }]`
-- [ ] `constructor-super: 'error'`
-- [ ] `no-class-assign: 'error'`
-- [ ] `no-confusing-arrow: ['error', { allowParens: true }]` (note: we override to `'off'`)
-- [ ] `no-const-assign: 'error'`
-- [ ] `no-dupe-class-members: 'error'`
-- [ ] `no-duplicate-imports: 'off'`
-- [ ] `no-new-symbol: 'error'`
-- [ ] `no-restricted-exports: ['error', { restrictedNamedExports: ['default', 'then'] }]`
-- [ ] `no-this-before-super: 'error'`
-- [ ] `no-useless-computed-key: 'error'`
-- [ ] `no-useless-constructor: 'error'`
-- [ ] `no-useless-rename: 'error'`
-- [ ] `no-var: 'error'`
-- [ ] `object-shorthand: ['error', 'always', { ignoreConstructors: false, avoidQuotes: true }]`
-- [ ] `prefer-arrow-callback: ['error', { allowNamedFunctions: false, allowUnboundThis: true }]` (note: we override to `'off'`)
-- [ ] `prefer-const: ['error', { destructuring: 'any', ignoreReadBeforeAssign: true }]`
-- [ ] `prefer-destructuring: ['error', ...]` (note: we override to `'off'`)
-- [ ] `prefer-numeric-literals: 'error'`
-- [ ] `prefer-rest-params: 'error'`
-- [ ] `prefer-spread: 'error'`
-- [ ] `prefer-template: 'error'`
-- [ ] `require-yield: 'error'`
-- [ ] `symbol-description: 'error'`
+### 1.3 Create `rules/airbnb-es6.js` ✅
+- [x] Extracted ~25 rules from Airbnb's ES6 config (3.5 KB)
 
-### 1.4 Create `rules/airbnb-style.js`
-Extract style rules (many are formatting-related; Prettier handles most):
-- [ ] `camelcase: 'error'` (note: we override to `'off'` and use naming-convention)
-- [ ] `func-names: 'warn'` (note: we override to `['error', 'as-needed']`)
-- [ ] `lines-between-class-members: ['error', 'always', { exceptAfterSingleLine: false }]`
-- [ ] `new-cap: 'error'`
-- [ ] `no-array-constructor: 'error'`
-- [ ] `no-bitwise: 'error'` (note: we override to `'off'`)
-- [ ] `no-continue: 'error'` (note: we override to `'warn'`)
-- [ ] `no-lonely-if: 'error'`
-- [ ] `no-multi-assign: 'error'`
-- [ ] `no-nested-ternary: 'error'` (note: we override to `'warn'`)
-- [ ] `no-new-object: 'error'`
-- [ ] `no-plusplus: 'error'` (note: we override to `'off'`)
-- [ ] `no-restricted-syntax: ['error', ...]`
-- [ ] `no-underscore-dangle: 'error'` (note: we override to `'off'`)
-- [ ] `no-unneeded-ternary: ['error', { defaultAssignment: false }]`
-- [ ] `one-var: ['error', 'never']`
-- [ ] `operator-assignment: ['error', 'always']`
-- [ ] `prefer-exponentiation-operator: 'error'`
-- [ ] `prefer-object-spread: 'error'`
-- [ ] `quotes: ['error', 'single', { avoidEscape: true }]`
-- [ ] `spaced-comment: ['error', 'always', ...]`
-- [ ] `unicode-bom: ['error', 'never']`
+### 1.4 Create `rules/airbnb-style.js` ✅
+- [x] Extracted ~90 style rules (13.8 KB, many handled by Prettier)
 
-### 1.5 Create `rules/airbnb-variables.js`
-Extract ~12 variable-related rules:
-- [ ] `no-delete-var: 'error'`
-- [ ] `no-label-var: 'error'`
-- [ ] `no-restricted-globals: ['error', ...]`
-- [ ] `no-shadow: 'error'`
-- [ ] `no-shadow-restricted-names: 'error'`
-- [ ] `no-undef: 'error'`
-- [ ] `no-undef-init: 'error'`
-- [ ] `no-unused-vars: ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }]`
-- [ ] `no-use-before-define: ['error', { functions: true, classes: true, variables: true }]`
+### 1.5 Create `rules/airbnb-variables.js` ✅
+- [x] Extracted ~12 variable-related rules (2.8 KB)
+- [x] Includes confusing browser globals list
 
-### 1.6 Create `rules/airbnb-imports.js`
-Extract import-related rules (already partially in `import-rules.js`):
-- [ ] `import/export: 'error'`
-- [ ] `import/first: 'error'`
-- [ ] `import/no-absolute-path: 'error'`
-- [ ] `import/no-amd: 'error'`
-- [ ] `import/no-cycle: ['error', { maxDepth: '∞' }]`
-- [ ] `import/no-duplicates: 'error'`
-- [ ] `import/no-dynamic-require: 'error'`
-- [ ] `import/no-extraneous-dependencies: ['error', ...]`
-- [ ] `import/no-import-module-exports: 'error'`
-- [ ] `import/no-mutable-exports: 'error'`
-- [ ] `import/no-named-as-default: 'error'`
-- [ ] `import/no-named-as-default-member: 'error'`
-- [ ] `import/no-named-default: 'error'`
-- [ ] `import/no-relative-packages: 'error'`
-- [ ] `import/no-self-import: 'error'`
-- [ ] `import/no-unresolved: ['error', { commonjs: true, caseSensitive: true }]`
-- [ ] `import/no-useless-path-segments: ['error', { commonjs: true }]`
-- [ ] `import/no-webpack-loader-syntax: 'error'`
-- [ ] `import/order: ['error', { groups: [...] }]`
-- [ ] `import/newline-after-import: 'error'`
-- [ ] `import/prefer-default-export: 'error'`
+### 1.6 Create `rules/airbnb-imports.js` ✅
+- [x] Extracted ~45 import plugin rules (6.1 KB)
 
-### 1.7 Create `rules/airbnb-base-rules.js`
-Main aggregator file that combines all Airbnb rules:
-- [ ] Import and spread all sub-rule files
-- [ ] Export as a single rules object
+### 1.7 Create `rules/airbnb-base-rules.js` ✅
+- [x] Aggregator combining all rule sets (0.8 KB)
+- [x] Exports both default combined object and named individual exports
 
 ---
 
@@ -513,7 +333,7 @@ Tasks:
 ## Summary Checklist
 
 ### Must Complete
-- [ ] Create Airbnb rule replacement files
+- [x] Create Airbnb rule replacement files ✅
 - [ ] Convert all rule files to ESM
 - [ ] Create main `eslint.config.js`
 - [ ] Create Svelte `svelte.config.js`
