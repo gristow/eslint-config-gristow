@@ -118,6 +118,8 @@ export default defineConfig(
       'prefer-const': 'off',
       // Disable import/no-duplicates - same issue as TS files with .d.ts resolution
       'import/no-duplicates': 'off',
+      // Disable no-unnecessary-condition - false positives with Svelte reactivity
+      '@typescript-eslint/no-unnecessary-condition': 'off',
     },
   },
 
